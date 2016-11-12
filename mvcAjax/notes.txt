@@ -1,0 +1,7 @@
+﻿From these tutuorials: 
+
+http://www.levibotelho.com/development/posting-javascript-objects-with-ajax-and-asp-net-mvc
+
+http://stackoverflow.com/questions/39624378/returning-data-from-mvc-controller-back-to-same-view
+
+http://www.makeitspendit.com/calling-asp-mvc-controllers-from-jquery-ajax/ (this is where original project template was downloaded from)

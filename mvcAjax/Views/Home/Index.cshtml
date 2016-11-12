@@ -1,0 +1,126 @@
+﻿
+<h1>MVC Controller - Ajax Demo</h1>
+
+<div id="testarea"></div>
+<p>
+  <input id="btn1" type="button" value="Test 1" />
+  <input id="btn2" type="button" value="Test 2" />
+  <input id="btn3" type="button" value="Test 3" />
+  <input id="btn4" type="button" value="Test 4" />
+    
+
+  <input type="text" id="SearchInput" />
+   <button class="btn btn-default" id="SearchBtn">Search</button>
+</p>
+<p>
+   
+   <button class="btn btn-default" id="JSObjectSendBtn">Send JS Object</button>
+</p>
+
+<script>
+
+  $(document).ready(function () {
+
+    $("#btn1").click(function () {
+      $.ajax({
+        url: "/Home/Test01",
+        datatype: "text",
+        type: "POST",
+        success: function (data) {
+          $('#testarea').html("All OK");
+        },
+        error: function () {
+          $("#testarea").html("ERROR");
+        }
+      });
+    });
+
+    $("#btn2").click(function () {
+      $.ajax({
+        url: "/Home/Test02",
+        datatype: "text",
+        type: "POST",
+        success: function (data) {
+          $('#testarea').html(data);
+        },
+        error: function () {
+          $("#testarea").html("ERROR");
+        }
+      });
+    });
+
+    $("#btn3").click(function () {
+      $.ajax({
+        url: "/Home/Test03",
+        datatype: "text",
+        data: { 'str1': 'qwerty', 'str2': 'its magic' },
+        type: "POST",
+        success: function (data) {
+          $('#testarea').html(data);
+        },
+        error: function () {
+          $("#testarea").html("ERROR");
+        }
+      });
+    });
+
+    $("#btn4").click(function () {
+
+       
+      $.ajax({
+        url: "/Home/Test04",
+        datatype: "text",
+        type: "POST",
+        success: function (data) {
+          $('#testarea').html(data);
+        },
+        error: function () {
+          $("#testarea").html("ERROR");
+        }
+      });
+    });
+
+    $("#SearchBtn").click(function () {
+        //first retrieve value of user input
+        var searchQuery = $("#SearchInput").val();
+        $.ajax({
+            url: "/Home/ProcessToCaps",
+            //datatype: "text",
+            type: "POST",
+            data: { SearchInput: searchQuery },
+            success: function (data) {
+                $('#testarea').html(data);
+            },
+            error: function () {
+                $("#testarea").html("ERROR");
+            }
+        });
+    });
+
+    $("#JSObjectSendBtn").click(function () {
+        //first retrieve value of user input
+        var jsTestObject = {
+            name: "Tommy",
+            birthday: new Date(1921, 0, 1),
+            hobbies: ["Pinball", "Holiday camp"]
+        };
+
+        $.ajax({
+            url: "/Home/JSTestMethod",
+            //datatype: "text",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(jsTestObject),
+            success: function (data) {
+                //$('#testarea').html(data);
+                alert("Success!");
+            },
+            error: function () {
+                $("#testarea").html("ERROR");
+            }
+        });
+    });
+
+  });
+
+</script>
